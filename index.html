@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estrutura do Site - Versão Final</title>
+    <!-- Incluindo o Tailwind CSS para estilização -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Importando a fonte Inter do Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Adiciona a rolagem suave para toda a página ao clicar em links de âncora */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Estilos personalizados */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000000;
+            color: #E5E7EB;
+            /* Aumenta o padding para acomodar o header (80px) + a barra JUMP TO (48px) */
+            padding-top: 128px; 
+        }
+
+        /* Efeito de vidro para o header */
+        .glassmorphism {
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        /* Estilo do header após rolar a página */
+        .header-scrolled {
+            background: #000000;
+        }
+        
+        /* Classe para esconder elementos por padrão */
+        .hidden-element { display: none; }
+        
+        /* --- ESTILOS DO MENU MÓVEL --- */
+        #mobile-menu {
+            transition: transform 0.3s ease-in-out;
+            transform: translateX(100%); /* Começa fora da tela, à direita */
+        }
+        #mobile-menu.open {
+            transform: translateX(0); /* Desliza para dentro da tela */
+        }
+        /* Estilo para a seta do menu accordion */
+        .accordion-arrow {
+            transition: transform 0.3s ease;
+        }
+        .accordion-trigger.open .accordion-arrow {
+            transform: rotate(180deg);
+        }
+        /* ... seus estilos existentes ... */
+
+        /* Classe para esconder elementos (pode já existir) */
+        .hidden-element { display: none; }
+
+        /* Estilos para o FAB Container e Botões */
+        #fab-container {
+            /* Tailwind classes já cuidam do posicionamento e flex */
+        }
+        .fab-button {
+            /* Tailwind já cuida da maior parte. Adicione mais se necessário */
+            /* Ex: filter: drop-shadow(0 4px 3px rgba(0,0,0,0.2)); se a sombra do tailwind não for suficiente */
+        }
+        .fab-button svg, .fab-button img { /* Para garantir que o ícone dentro do botão não afete o clique */
+            pointer-events: none;
+        }
+
+
+        /* Estilos para o Painel Lateral e Overlay */
+        #side-menu-panel.open {
+            transform: translateX(0);
+        }
+        #side-menu-overlay.visible {
+            display: block; /* ou opacity: 1; se você animar a opacidade */
+            opacity: 1;
+        }
+        #side-menu-overlay { /* Começa invisível e com opacidade 0 para transição */
+            opacity: 0;
+            /* transition: opacity 0.3s ease-in-out; já no HTML, mas aqui seria o lugar */
+        }        
+        
+        
+    </style>
+</head>
+<body>
+
+    <!-- Placeholder for the Header -->
+    <div id="header-placeholder"></div>
+    
+    <!-- Conteúdo principal da página -->
+    <main class="container mx-auto p-4 md:p-8">
+        <section id="hero" class="h-96 flex items-center justify-center" data-jumpto-title="INTRO"> <!-- Added data-jumpto-title -->
+            <h1 class="text-5xl font-bold text-center">Agora o menu móvel<br>tem submenus.</h1>
+        </section>
+         <section id="testnet" class="h-screen flex items-center justify-center bg-gray-900 rounded-lg my-10" data-jumpto-title="TESTNET">
+            <h1 class="text-5xl font-bold">Seção Testnet</h1>
+        </section>
+        <section id="whitepaper" class="h-screen flex items-center justify-center bg-gray-800 rounded-lg my-10" data-jumpto-title="WHITEPAPER">
+            <h1 class="text-5xl font-bold">Seção Whitepaper</h1>
+        </section>
+        <section id="keyfeatures" class="h-screen flex items-center justify-center bg-gray-900 rounded-lg my-10" data-jumpto-title="KEY FEATURES">
+            <h1 class="text-5xl font-bold">Seção Key Features</h1>
+        </section>
+        <section id="another-section" class="h-screen flex items-center justify-center bg-gray-700 rounded-lg my-10">
+             <!-- No data-jumpto-title, will use ID -->
+            <h2 class="text-4xl font-bold">Another Section for Jump To</h2>
+        </section>
+        <section id="another-another-section" class="h-screen flex items-center justify-center bg-gray-700 rounded-lg my-10">
+             <!-- No data-jumpto-title, will use ID -->
+            <h2 class="text-4xl font-bold">Another another- Section for Jump To</h2>
+        </section>
+    </main>
+    
+    <!-- Placeholder for the Footer -->
+    <div id="footer-placeholder"></div>
+
+    <script src="js/main.js"></script>
+    <!-- ... seu conteúdo <main> e <div id="footer-placeholder"></div> ... -->
+
+    <!-- ======================= BOTÕES FLUTUANTES (FAB) ======================= -->
+    <div id="fab-container" class="fixed bottom-6 right-6 z-40 flex flex-col-reverse items-center space-y-reverse space-y-3">
+        <!-- Botão 1: Chat IA (Exemplo) -->
+        <button id="fab-chat" aria-label="Abrir Chat IA"
+            class="fab-button w-14 h-14 bg-blue-600 rounded-full shadow-lg flex items-center justify-center text-white hover:bg-blue-700 transition-colors duration-200">
+            <!-- Ícone SVG para Chat (Exemplo: Heroicons - chat-bubble-left-right) -->
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="w-7 h-7">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3.543-3.091a9.117 9.117 0 0 1-1.255 0c-5.142 0-9.359-4.217-9.359-9.359s4.217-9.359 9.359-9.359c1.753 0 3.396.492 4.788 1.353m-1.282 4.829c.146-.340.236-.71.236-1.099 0-.976-.524-1.827-1.318-2.221m-1.318 2.221c.075.36.075.732.008 1.09C15.901 13.044 15.006 14 14 14c-1.006 0-1.901-.956-2.182-2.182-.067-.358-.067-.732.008-1.09m-2.19 0c-.27.470-.383.992-.383 1.528 0 1.228.672 2.296 1.625 2.844M11 12.75a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H11.75a.75.75 0 0 1-.75-.75v-.008Z" />
+            </svg>
+        </button>
+
+        <!-- Botão 2: Configurações de Cookies (Exemplo) -->
+        <button id="fab-cookies" aria-label="Configurações de Cookies"
+            class="fab-button w-14 h-14 bg-gray-700 rounded-full shadow-lg flex items-center justify-center text-white hover:bg-gray-800 transition-colors duration-200">
+            <!-- Ícone SVG para Cookies (Exemplo: Heroicons - cookie) -->
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="w-7 h-7">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M15.59 14.37a6 6 0 0 1-5.84 7.38v-4.82m5.84-2.56a12.022 12.022 0 0 0-5.84 0m5.84 0a11.96 11.96 0 0 1 2.06 5.54H9.72c.48-1.838 1.153-3.56 2.06-5.54m3.82 0a12.026 12.026 0 0 0-2.06-5.54 6 6 0 0 0-5.84-2.56v4.82a11.96 11.96 0 0 1-2.06 5.54m10 0a6 6 0 0 0 2.06-5.54m0 0a6 6 0 0 0-2.06-5.54m0 0a11.963 11.963 0 0 0-5.84-2.56m5.84 2.56a6.002 6.002 0 0 0-5.84 7.38m5.84-7.38a11.963 11.963 0 0 0 5.84 2.56m-5.84-2.56a12.023 12.023 0 0 1-5.84 0" />
+            </svg>
+        </button>
+
+        <!-- Adicione mais botões aqui se necessário, seguindo o padrão -->
+    </div>
+
+    <!-- ======================= PAINEL DO MENU LATERAL ======================= -->
+    <div id="side-menu-overlay" class="fixed inset-0 bg-black/50 z-40 hidden-element transition-opacity duration-300"></div>
+    <aside id="side-menu-panel"
+        class="fixed top-0 right-0 h-full w-full max-w-sm bg-gray-900 shadow-xl z-50 transform translate-x-full transition-transform duration-300 ease-in-out p-6 overflow-y-auto">
+        <div class="flex justify-between items-center mb-6">
+            <h2 id="side-menu-title" class="text-xl font-semibold text-white">Menu</h2>
+            <button id="close-side-menu" aria-label="Fechar Menu" class="text-gray-400 hover:text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                    stroke="currentColor" class="w-7 h-7">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Conteúdo do Menu (será preenchido dinamicamente ou pode ser fixo) -->
+        <div id="side-menu-content" class="space-y-4">
+            <!-- Exemplo de conteúdo: Será substituído ou você pode colocar conteúdo estático aqui -->
+            <p class="text-gray-300">Conteúdo do menu aparecerá aqui.</p>
+        </div>
+    </aside>
+
+    <script src="js/main.js"></script>
+</body>
+</html>    
+</body>
