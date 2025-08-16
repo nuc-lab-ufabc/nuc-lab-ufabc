@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Clear existing (if any, though _header.html should be empty) and add prefix
+        // Clear existing (if any, though header.html should be empty) and add prefix
         jumpToContent.innerHTML = '<span class="font-bold text-gray-200">JUMP TO:</span>';
         
         // Find sections with an ID within the main content
@@ -155,15 +155,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Load Header, then initialize its scripts and generate jump links
-    loadHtmlPartial('_header.html', 'header-placeholder', () => {
+    loadHtmlPartial('header.html', 'header-placeholder', () => {
         initializeHeaderScripts();
         generateJumpToLinks(); // Generate jump links AFTER header is loaded and main content is in DOM
     });
 
     // Load Footer
-    loadHtmlPartial('_footer.html', 'footer-placeholder', () => {
+    loadHtmlPartial('footer.html', 'footer-placeholder', () => {
         // Initialize any footer-specific scripts here if needed
-        // For example, the current year script is already in _footer.html,
+        // For example, the current year script is already in footer.html,
         // but if it were more complex, you'd call an init function here.
          if (document.getElementById('current-year')) {
             document.getElementById('current-year').textContent = new Date().getFullYear();
