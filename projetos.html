@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estrutura do Site - Versão Final</title>
+    <!-- Incluindo o Tailwind CSS para estilização -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Importando a fonte Inter do Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Adiciona a rolagem suave para toda a página ao clicar em links de âncora */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Estilos personalizados */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000000;
+            color: #E5E7EB;
+            /* Aumenta o padding para acomodar o header (80px) + a barra JUMP TO (48px) */
+            padding-top: 128px; 
+        }
+
+        /* Efeito de vidro para o header */
+        .glassmorphism {
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        /* Estilo do header após rolar a página */
+        .header-scrolled {
+            background: #000000;
+        }
+        
+        /* Classe para esconder elementos por padrão */
+        .hidden-element { display: none; }
+        
+        /* --- ESTILOS DO MENU MÓVEL --- */
+        #mobile-menu {
+            transition: transform 0.3s ease-in-out;
+            transform: translateX(100%); /* Começa fora da tela, à direita */
+        }
+        #mobile-menu.open {
+            transform: translateX(0); /* Desliza para dentro da tela */
+        }
+        /* Estilo para a seta do menu accordion */
+        .accordion-arrow {
+            transition: transform 0.3s ease;
+        }
+        .accordion-trigger.open .accordion-arrow {
+            transform: rotate(180deg);
+        }
+        /* ... seus estilos existentes ... */
+
+        /* Classe para esconder elementos (pode já existir) */
+        .hidden-element { display: none; }
+
+        /* Estilos para o FAB Container e Botões */
+        #fab-container {
+            /* Tailwind classes já cuidam do posicionamento e flex */
+        }
+        .fab-button {
+            /* Tailwind já cuida da maior parte. Adicione mais se necessário */
+            /* Ex: filter: drop-shadow(0 4px 3px rgba(0,0,0,0.2)); se a sombra do tailwind não for suficiente */
+        }
+        .fab-button svg, .fab-button img { /* Para garantir que o ícone dentro do botão não afete o clique */
+            pointer-events: none;
+        }
+
+        /* Estilos para o Painel Lateral e Overlay */
+        #side-menu-panel.open {
+            transform: translateX(0);
+        }
+        #side-menu-overlay.visible {
+            display: block; /* ou opacity: 1; se você animar a opacidade */
+            opacity: 1;
+        }
+        #side-menu-overlay { /* Começa invisível e com opacidade 0 para transição */
+            opacity: 0;
+            /* transition: opacity 0.3s ease-in-out; já no HTML, mas aqui seria o lugar */
+        }        
+        
+        
+    </style>
+</head>
+<body>
+
+    <!-- Placeholder for the Header -->
+    <div id="header-placeholder"></div>
+
+    <!---------------------------------->
+    <!---------------------------------->
+    <!---------------------------------->
+    
+    <!-- Conteúdo principal da página -->
+    <main class="container mx-auto p-4 md:p-8">
+    
+    
+	<!-- SEÇÃO DE APRESENTAÇÃO (HERO) -->
+        <section id="hero" class="text-center py-16 h-96" data-jumpto-title="INTRO">
+            <h1 class="text-5xl md:text-7xl font-bold text-white leading-tight fade-in fade-in-delay-1">
+                Ciência Nuclear <br> <span class="text-white glow-text">A Serviço do Futuro.</span>
+            </h1>
+            <p id="bio-text" class="max-w-2xl mx-auto mt-6 text-lg text-gray-400 fade-in fade-in-delay-2 min-h-[72px]">
+                No nuc-lab, da UFABC, combinamos pesquisa de ponta e inovação prática para enfrentar 
+                os desafios da energia nuclear. Explore nossos projetos.
+            </p>
+            <div class="mt-10 flex flex-col sm:flex-row items-center justify-center 
+                         space-y-4 sm:space-y-0 sm:space-x-4 fade-in fade-in-delay-3">
+            </div>
+        </section>
+	<!---------------------------------->
+
+
+	<!-- Projeto de Micro Reatores Nucleares -->
+
+        <section id="projeto-microreator" class="py-16 px-4 bg-gray-900 text-white rounded-lg my-10 
+                md:flex md:items-center md:justify-center" data-jumpto-title="Projeto Microreator">
+            <div class="container mx-auto">
+            <div class="md:flex md:items-center md:space-x-12">
+            <div class="md:w-1/2 flex justify-center mb-8 md:mb-0">
+                <img src="figs/reac_ter.png" alt="Imagem representativa do projeto" 
+                                     class="rounded-lg shadow-lg" style="width: 70%;">
+            </div>
+
+            <div class="md:w-1/2">
+                <h2 class="text-4xl font-bold mb-6 text-center md:text-left">Projeto de Micro Reatores Nucleares</h2>
+                <p class="text-lg mb-6 text-justify">
+                    O nuc-lab - em uma iniciativa pioneira e de grande relevância estratégica para o setor de 
+                    energias renováveis no Brasil - é um dos parceiros no projeto "Desenvolvimento e testes 
+                    de tecnologias críticas aplicáveis a micro reatores nucleares".
+                </p>
+                <p class="text-lg mb-6 text-justify">
+                    O projeto, que tem como objetivo principal demonstrar a viabilidade da construção de micro 
+                    reatores nucleares no país, é uma colaboração com a Diamante Geração de Energia, a 
+                    Indústrias Nucleares do Brasil S.A. (INB) e a Terminus Pesquisa e Desenvolvimento em 
+                    Energia Ltda. A iniciativa é financiada pela Finep, por meio da seleção pública "Mais 
+                    Inovação Brasil - Energias Renováveis".
+                </p>
+                <h3 class="text-2xl font-semibold mb-4">Participação do nuc-lab:</h3>
+                <ul class="list-disc list-inside space-y-3 text-lg text-justify">
+                    <li>
+                        <strong>Liderança em pesquisa:</strong> A equipe do nuc-lab da UFABC é responsável 
+                        pelo projeto conceitual e básico do reator, o que inclui o projeto da Unidade 
+                        Crítica (UCri).
+                    </li>
+                    <li>
+                        <strong>Contribuição com estudos de sustentabilidade:</strong> O laboratório contribuirá 
+                        com estudos e análises para a inserção de micro reatores em redes elétricas.
+                    </li>
+                    <li>
+                        <strong>Desenvolvimento tecnológico:</strong> Nosso papel é fundamental para o sucesso
+                         do projeto, que busca desenvolver tecnologias inovadoras e com alto grau de ineditismo 
+                         no Brasil, como o núcleo do micro reator sólido, os materiais especiais para a cadeia de
+                          suprimentos e os sistemas de proteção e controle.
+                    </li>
+                </ul>
+                <p class="text-lg mt-6 text-justify">
+                    Com essa colaboração, a UFABC, por meio do nuc-lab, reafirma seu compromisso com a pesquisa 
+                    e o desenvolvimento tecnológico, contribuindo diretamente para a transição energética do 
+                    Brasil e para o avanço da ciência e tecnologia nuclear no país.
+                </p>
+            </div>
+            </div>
+            </div>
+        </section>
+	<!---------------------------------->
+
+
+
+
+	<!-- Análise e Revisão do Plano de Descomissionamento (Projeto CNAAA) -->
+        <section id="projeto-cnaaa" class="py-16 px-4 bg-gray-700 text-white rounded-lg my-10 md:flex 
+                   md:items-center md:justify-center" data-jumpto-title="Projeto CNAAA">
+            <div class="container mx-auto">
+                <div class="md:flex md:items-center md:space-x-12">
+                <div class="md:w-1/2 flex justify-center mb-8 md:mb-0">
+                <img src="figs/descom.png" alt="Imagem representativa do projeto" class="rounded-lg shadow-lg">
+            </div>
+
+            <div class="md:w-1/2">
+                <h2 class="text-4xl font-bold mb-6 text-center md:text-left">Análise e Revisão do Plano de Descomissionamento da CNAAA</h2>
+                <p class="text-lg mb-6 text-justify">
+                    Este projeto teve como objetivo revisar e aprimorar o Plano Preliminar de Descomissionamento (PPD)
+                    da Central Nuclear Almirante Alvaro Alberto (CNAAA). Em colaboração com a Eletronuclear, o nuc-lab
+                    da UFABC, incorporou dados reais sobre o estado do sítio da usina, garantindo uma abordagem mais
+                    precisa e alinhada às condições atuais.
+                </p>
+                <h3 class="text-2xl font-semibold mb-4">Destaques do Projeto:</h3>
+                <ul class="list-disc list-inside space-y-3 text-lg text-justify">
+                    <li>
+                        <strong>Detalhamento conforme padrões internacionais:</strong> O PPD foi revisado seguindo as
+                        diretrizes da Agência Internacional de Energia Nuclear (IAEA), assegurando que o documento atenda
+                         aos mais altos padrões de segurança e gestão.
+                    </li>
+                    <li>
+                        <strong>Inclusão de dados reais:</strong> O trabalho incluiu dados atualizados sobre o inventário
+                         de rejeitos radioativos e uma análise detalhada dos custos envolvidos no processo de descomissionamento.
+                    </li>
+                    <li>
+                        <strong>Incorporação de feedback especializado:</strong> Foram consideradas e aplicadas as sugestões
+                         e comentários feitos pela consultoria Enercon Federal Services (EUA), aprimorando a robustez e
+                         a qualidade técnica do plano.
+                    </li>
+                </ul>
+                </div>
+                </div>
+            </div>
+        </section>
+	<!---------------------------------->
+
+
+        <section id="whitepaper" class="h-screen flex items-center justify-center bg-gray-800 rounded-lg my-10" data-jumpto-title="WHITEPAPER">
+            <h1 class="text-5xl font-bold">Seção Whitepaper</h1>
+        </section>
+        <section id="keyfeatures" class="h-screen flex items-center justify-center bg-gray-900 rounded-lg my-10" data-jumpto-title="KEY FEATURES">
+            <h1 class="text-5xl font-bold">Seção Key Features</h1>
+        </section>
+        <section id="another-section" class="h-screen flex items-center justify-center bg-gray-700 rounded-lg my-10">
+             <!-- No data-jumpto-title, will use ID -->
+            <h2 class="text-4xl font-bold">Another Section for Jump To</h2>
+        </section>
+        <section id="another-another-section" class="h-screen flex items-center justify-center bg-gray-700 rounded-lg my-10">
+             <!-- No data-jumpto-title, will use ID -->
+            <h2 class="text-4xl font-bold">Another another- Section for Jump To</h2>
+        </section>
+    </main>
+    
+    <!-- Placeholder for the Footer -->
+    <div id="footer-placeholder"></div>
+
+    <script src="js/main.js"></script>
+    <!-- ... seu conteúdo <main> e <div id="footer-placeholder"></div> ... -->
+
+    <!-- ======================= BOTÕES FLUTUANTES (FAB) ======================= -->
+    <div id="fab-container" class="fixed bottom-6 right-6 z-40 flex flex-col-reverse items-center space-y-reverse space-y-3">
+        <!-- Botão 1: Chat IA (Exemplo) -->
+        <button id="fab-chat" aria-label="Configurações de Cookies"
+            class="fab-button w-14 h-14 bg-gray-700 rounded-full shadow-lg flex items-center 
+            justify-center text-white hover:bg-gray-800 transition-colors duration-200">
+            <!-- Ícone SVG para Cookies (Exemplo: Heroicons - cookie) -->
+
+            <img src="figs/globe.svg" alt="Descrição da imagem SVG" >        
+        </button>
+
+        <!-- Adicione mais botões aqui se necessário, seguindo o padrão -->
+    </div>
+
+    <!-- ======================= PAINEL DO MENU LATERAL ======================= -->
+    <div id="side-menu-overlay" class="fixed inset-0 bg-black/50 z-40 hidden-element transition-opacity duration-300"></div>
+    <aside id="side-menu-panel"
+        class="fixed top-0 right-0 h-full w-full max-w-sm bg-gray-900 shadow-xl z-50 
+               transform translate-x-full transition-transform duration-300 ease-in-out 
+               p-6 overflow-y-auto">
+        <div class="flex justify-between items-center mb-6">
+            <h2 id="side-menu-title" class="text-xl font-semibold text-white">Menu</h2>
+            <button id="close-side-menu" aria-label="Fechar Menu" class="text-gray-400 hover:text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                    stroke="currentColor" class="w-7 h-7">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Conteúdo do Menu (será preenchido dinamicamente ou pode ser fixo) -->
+        <div id="side-menu-content" class="space-y-4">
+            <!-- Exemplo de conteúdo: Será substituído ou você pode colocar conteúdo estático aqui -->
+            <p class="text-gray-300">Conteúdo do menu aparecerá aqui.</p>
+        </div>
+    </aside>
+
+    <script src="js/main.js"></script>
+</body>
+</html>    
+</body>

@@ -209,24 +209,91 @@ document.addEventListener('DOMContentLoaded', () => {
                 let contentHTML = "<p>Selecione uma opção.</p>";
 
                 if (button.id === 'fab-chat') {
-                    title = "Chat IA";
+
+                    title = "Contato";
                     contentHTML = `
-                        <p class="text-gray-400 mb-4">Converse com nossa Inteligência Artificial.</p>
-                        <textarea class="w-full h-24 bg-gray-800 text-white p-2 rounded mb-2" placeholder="Digite sua mensagem..."></textarea>
-                        <button class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">Enviar</button>
+                        <h3 class="text-xl font-bold mb-4">Redes Sociais e Contato</h3>
+                        <p class="text-gray-400 mb-6">Siga-nos para acompanhar nossas atualizações e novidades.</p>
+                        <div class="flex flex-wrap gap-6 justify-center">
+                        <a  href="https://www.facebook.com/UFABC" 
+                            target="_blank" 
+                            aria-label="Nossa página no Facebook" 
+                            class="text-gray-400 
+                            hover:text-blue-600 
+                            transition-colors">
+                            <img src="figs/facebook.svg" alt="Ícone do Facebook" class="w-10 h-10">
+                        </a>
+                        <a  href="https://www.instagram.com/ufabc/" 
+                            target="_blank" 
+                            aria-label="Nosso perfil no Instagram" 
+                            class="text-gray-400 
+                            hover:text-pink-500 
+                            transition-colors">
+                            <img src="figs/instagram.svg" alt="Ícone do Instagram" class="w-10 h-10">
+                        </a>
+                        <a href="https://www.linkedin.com/company/nuc-lab/" 
+                               target="_blank" 
+                               aria-label="Nosso perfil no LinkedIn" 
+                               class="text-gray-400 
+                               hover:text-blue-700 
+                               transition-colors">
+                            <img src="figs/linkedin.svg" alt="Ícone do LinkedIn" class="w-10 h-10">
+                        </a>
+                    
+                        <a href="https://www.youtube.com/user/ufabcoficial" 
+                               target="_blank" aria-label="Nosso canal no YouTube" class="text-gray-400 hover:text-red-600 
+                               transition-colors">
+                            <img src="figs/youtube.svg" alt="Ícone do YouTube" class="w-10 h-10">
+                        </a>
+                    
+                        <a  href="https://x.com/nuc_lab" 
+                            target="_blank" 
+                            aria-label="Nosso perfil no X" 
+                            class="text-gray-400 
+                            hover:text-gray-200 
+                            transition-colors">
+                            <img src="figs/x.svg" alt="Ícone do Twitter" class="w-10 h-10">
+                        </a>
+                    </div>
+                    
+                    <div class="my-8 border-t border-gray-700"></div>
+                    
+                    <h3 class="text-xl font-bold mb-4">Grupos e Comunidades</h3>
+                    <p class="text-gray-400 mb-6">Junte-se a nossa comunidade para discussões e informações em tempo real.</p>
+                    <div class="flex flex-wrap gap-6 justify-center">
+
+                        <a  href="[https://tecnoblog.net/](https://tecnoblog.net/)" 
+                            target="_blank" 
+                            aria-label="Nosso grupo no Telegram" 
+                            class="text-gray-400 
+                            hover:text-blue-500 
+                            transition-colors">
+                            <img src="figs/telegram.svg" alt="Ícone do Telegram" class="w-10 h-10">
+                        </a>
+                    
+                        <a  href="[https://olhardigital.com.br/](https://olhardigital.com.br/)" 
+                            target="_blank" 
+                            aria-label="Nosso grupo no WhatsApp" 
+                            class="text-gray-400 
+                            hover:text-green-500 
+                            transition-colors">
+                            <img src="figs/whatsapp.svg" alt="Ícone do WhatsApp" class="w-10 h-10">
+                        </a>
+                    
+                        
+                        
+                    </div>
                     `;
-                } else if (button.id === 'fab-cookies') {
-                    title = "Configurações de Cookies";
-                    contentHTML = `
-                        <p class="text-gray-400 mb-4">Gerencie suas preferências de cookies.</p>
-                        <div class="space-y-2">
-                            <div><label class="flex items-center text-gray-300"><input type="checkbox" class="mr-2 accent-blue-500" checked> Cookies Essenciais</label></div>
-                            <div><label class="flex items-center text-gray-300"><input type="checkbox" class="mr-2 accent-blue-500"> Cookies de Análise</label></div>
-                            <div><label class="flex items-center text-gray-300"><input type="checkbox" class="mr-2 accent-blue-500"> Cookies de Marketing</label></div>
-                        </div>
-                        <button class="mt-4 w-full bg-green-600 text-white py-2 rounded hover:bg-green-700">Salvar Preferências</button>
-                    `;
-                }
+
+
+
+              
+                    
+                } 
+                // else if (button.id === 'fab-cookies') {
+                //     title = "Configurações de Cookies";
+                //     contentHTML = ``;
+                //}
                 // Adicione mais 'else if' para outros botões FAB
                 openSideMenu(title, contentHTML);
             });
