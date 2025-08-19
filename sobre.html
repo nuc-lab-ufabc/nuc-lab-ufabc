@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre o Nuc-lab - UFABC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Adiciona a rolagem suave para toda a página ao clicar em links de âncora */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Estilos personalizados */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000000;
+            color: #E5E7EB;
+            /* Aumenta o padding para acomodar o header (80px) + a barra JUMP TO (48px) */
+            padding-top: 128px; 
+        }
+
+        /* Efeito de vidro para o header */
+        .glassmorphism {
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        /* Estilo do header após rolar a página */
+        .header-scrolled {
+            background: #000000;
+        }
+        
+        /* Classe para esconder elementos por padrão */
+        .hidden-element { display: none; }
+        
+        /* --- ESTILOS DO MENU MÓVEL --- */
+        #mobile-menu {
+            transition: transform 0.3s ease-in-out;
+            transform: translateX(100%); /* Começa fora da tela, à direita */
+        }
+        #mobile-menu.open {
+            transform: translateX(0); /* Desliza para dentro da tela */
+        }
+        /* Estilo para a seta do menu accordion */
+        .accordion-arrow {
+            transition: transform 0.3s ease;
+        }
+        .accordion-trigger.open .accordion-arrow {
+            transform: rotate(180deg);
+        }
+        /* ... seus estilos existentes ... */
+
+        /* Classe para esconder elementos (pode já existir) */
+        .hidden-element { display: none; }
+
+        /* Estilos para o FAB Container e Botões */
+        #fab-container {
+            /* Tailwind classes já cuidam do posicionamento e flex */
+        }
+        .fab-button {
+            /* Tailwind já cuida da maior parte. Adicione mais se necessário */
+            /* Ex: filter: drop-shadow(0 4px 3px rgba(0,0,0,0.2)); se a sombra do tailwind não for suficiente */
+        }
+        .fab-button svg, .fab-button img { /* Para garantir que o ícone dentro do botão não afete o clique */
+            pointer-events: none;
+        }
+
+        /* Estilos para o Painel Lateral e Overlay */
+        #side-menu-panel.open {
+            transform: translateX(0);
+        }
+        #side-menu-overlay.visible {
+            display: block; /* ou opacity: 1; se você animar a opacidade */
+            opacity: 1;
+        }
+        #side-menu-overlay { /* Começa invisível e com opacidade 0 para transição */
+            opacity: 0;
+            /* transition: opacity 0.3s ease-in-out; já no HTML, mas aqui seria o lugar */
+        }   
+        
+        /* Estilo para os ícones */
+        .social-icon {
+            width: 24px;
+            height: 24px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="header-placeholder"></div>
+
+    <main class="container mx-auto p-4 md:p-8">
+    
+        <section id="sobre" class="text-center py-16" data-jumpto-title="O Laboratório">
+            <h1 class="text-5xl md:text-7xl font-bold text-white leading-tight">
+                Sobre o Nuc-lab
+            </h1>
+            <p class="max-w-4xl mx-auto mt-6 text-lg text-gray-400">
+                (Texto explicativo sobre o nuc-lab. Este é um espaço para detalhar a missão, a história e os objetivos do laboratório. 
+                Pode incluir informações sobre a sua fundação, a sua importância no cenário de pesquisa da UFABC e do Brasil, 
+                e a sua visão para o futuro da energia nuclear.)
+            </p>
+        </section>
+        
+        <section id="equipe" class="py-16 px-4 bg-gray-900 text-white rounded-lg my-10" data-jumpto-title="Nossa Equipe">
+            <h2 class="text-4xl font-bold mb-12 text-center">Nossa Equipe</h2>
+
+            <div class="mb-12">
+                <h3 class="text-3xl font-semibold mb-8 text-center">Coordenadores</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+                    <div class="flex flex-col items-center text-center p-6 bg-gray-800 rounded-lg shadow-lg">
+                        <img src="https://via.placeholder.com/150" alt="Foto do Coordenador 1" class="w-32 h-32 rounded-full mb-4 object-cover">
+                        <h4 class="text-xl font-bold">Nome do Coordenador 1</h4>
+                        <p class="text-gray-400">Coordenador Principal</p>
+                        <p class="mt-2 text-gray-300 text-sm">Especialista em segurança de reatores nucleares e desenvolvimento de novos materiais para aplicações energéticas.</p>
+                        <div class="flex space-x-4 mt-4">
+                            <a href="#" target="_blank" aria-label="LinkedIn"><img src="figs/linkedin.svg" alt="LinkedIn" class="social-icon"></a>
+                            <a href="#" target="_blank" aria-label="GitHub"><img src="figs/github.svg" alt="GitHub" class="social-icon"></a>
+                            <a href="#" target="_blank" aria-label="E-mail"><img src="figs/email.svg" alt="E-mail" class="social-icon"></a>
+                            <a href="#" target="_blank" aria-label="X (Twitter)"><img src="figs/x.svg" alt="X (Twitter)" class="social-icon"></a>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-center text-center p-6 bg-gray-800 rounded-lg shadow-lg">
+                        <img src="https://via.placeholder.com/150" alt="Foto do Coordenador 2" class="w-32 h-32 rounded-full mb-4 object-cover">
+                        <h4 class="text-xl font-bold">Nome do Coordenador 2</h4>
+                        <p class="text-gray-400">Coordenador Adjunto</p>
+                        <p class="mt-2 text-gray-300 text-sm">Pesquisador com foco em descomissionamento de usinas nucleares e gestão de resíduos radioativos.</p>
+                        <div class="flex space-x-4 mt-4">
+                            <a href="#" target="_blank" aria-label="LinkedIn"><img src="figs/linkedin.svg" alt="LinkedIn" class="social-icon"></a>
+                            <a href="#" target="_blank" aria-label="GitHub"><img src="figs/github.svg" alt="GitHub" class="social-icon"></a>
+                            <a href="#" target="_blank" aria-label="E-mail"><img src="figs/email.svg" alt="E-mail" class="social-icon"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mb-12">
+                <h3 class="text-3xl font-semibold mb-8 text-center">Pesquisadores</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- ======================= -->
+                    <div class="flex flex-col items-center text-center p-6 bg-gray-800 rounded-lg shadow-lg">
+                        <img src="https://via.placeholder.com/150" alt="Foto do Pesquisador 1" class="w-32 h-32 rounded-full mb-4 object-cover">
+                        <h4 class="text-xl font-bold">Nome do Pesquisador 1</h4>
+                        <p class="text-gray-400">Pesquisador Sênior</p>
+                        <p class="mt-2 text-gray-300 text-sm">Foco em modelagem computacional para simulação de fluidos e calor em sistemas nucleares.</p>
+                        <div class="flex space-x-4 mt-4">
+                            <a href="#" target="_blank" aria-label="LinkedIn"><img src="figs/linkedin.svg" alt="LinkedIn" class="social-icon"></a>
+                            <a href="#" target="_blank" aria-label="E-mail"><img src="figs/email.svg" alt="E-mail" class="social-icon"></a>
+                        </div>
+                    </div>
+                    <!-- ======================= -->
+                    <div class="flex flex-col items-center text-center p-6 bg-gray-800 rounded-lg shadow-lg">
+                        <img src="https://via.placeholder.com/150" alt="Foto do Pesquisador 2" class="w-32 h-32 rounded-full mb-4 object-cover">
+                        <h4 class="text-xl font-bold">Nome do Pesquisador 2</h4>
+                        <p class="text-gray-400">Pesquisador Associado</p>
+                        <p class="mt-2 text-gray-300 text-sm">Especialista em detecção de radiação e instrumentação nuclear para monitoramento ambiental.</p>
+                        <div class="flex space-x-4 mt-4">
+                            <a href="#" target="_blank" aria-label="LinkedIn"><img src="figs/linkedin.svg" alt="LinkedIn" class="social-icon"></a>
+                            <a href="#" target="_blank" aria-label="GitHub"><img src="figs/github.svg" alt="GitHub" class="social-icon"></a>
+                            <a href="#" target="_blank" aria-label="E-mail"><img src="figs/email.svg" alt="E-mail" class="social-icon"></a>
+                        </div>
+                    </div>
+                    <!-- ======================= -->
+                </div>
+            </div>
+
+            <div class="mb-12">
+                <h3 class="text-3xl font-semibold mb-8 text-center">Alunos</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- ======================= -->
+                    <div class="flex flex-col items-center text-center p-6 bg-gray-800 rounded-lg shadow-lg">
+                        <img src="https://via.placeholder.com/150" alt="Foto do Aluno 1" class="w-32 h-32 rounded-full mb-4 object-cover">
+                        <h4 class="text-xl font-bold">Nome do Aluno 1</h4>
+                        <p class="text-gray-400">Mestrando em Energia</p>
+                        <p class="mt-2 text-gray-300 text-sm">Pesquisa sobre otimização do ciclo do combustível nuclear para reatores de água leve.</p>
+                        <div class="flex space-x-4 mt-4">
+                            <a href="#" target="_blank" aria-label="LinkedIn"><img src="figs/linkedin.svg" alt="LinkedIn" class="social-icon"></a>
+                        </div>
+                    </div>
+                    <!-- ======================= -->
+                    <div class="flex flex-col items-center text-center p-6 bg-gray-800 rounded-lg shadow-lg">
+                        <img src="https://via.placeholder.com/150" alt="Foto do Aluno 2" class="w-32 h-32 rounded-full mb-4 object-cover">
+                        <h4 class="text-xl font-bold">Nome do Aluno 2</h4>
+                        <p class="text-gray-400">Graduando em Ciências e Tecnologia</p>
+                        <p class="mt-2 text-gray-300 text-sm">Contribui para o projeto de micro reatores, estudando a cadeia de suprimentos de materiais.</p>
+                        <div class="flex space-x-4 mt-4">
+                            <a href="#" target="_blank" aria-label="LinkedIn"><img src="figs/linkedin.svg" alt="LinkedIn" class="social-icon"></a>
+                            <a href="#" target="_blank" aria-label="Instagram"><img src="figs/instagram.svg" alt="Instagram" class="social-icon"></a>
+                        </div>
+                    </div>
+                    <!-- ======================= -->
+                    <div class="flex flex-col items-center text-center p-6 bg-gray-800 rounded-lg shadow-lg">
+                        <img src="https://via.placeholder.com/150" alt="Foto do Aluno 2" class="w-32 h-32 rounded-full mb-4 object-cover">
+                        <h4 class="text-xl font-bold">Nome do Aluno 2</h4>
+                        <p class="text-gray-400">Graduando em Ciências e Tecnologia</p>
+                        <p class="mt-2 text-gray-300 text-sm">Contribui para o projeto de micro reatores, estudando a cadeia de suprimentos de materiais.</p>
+                        <div class="flex space-x-4 mt-4">
+                            <a href="#" target="_blank" aria-label="LinkedIn"><img src="figs/linkedin.svg" alt="LinkedIn" class="social-icon"></a>
+                            <a href="#" target="_blank" aria-label="Instagram"><img src="figs/instagram.svg" alt="Instagram" class="social-icon"></a>
+                        </div>
+                    </div>
+                    <!-- ======================= -->
+                    <div class="flex flex-col items-center text-center p-6 bg-gray-800 rounded-lg shadow-lg">
+                        <img src="https://via.placeholder.com/150" alt="Foto do Aluno 3" class="w-32 h-32 rounded-full mb-4 object-cover">
+                        <h4 class="text-xl font-bold">Nome do Aluno 3</h4>
+                        <p class="text-gray-400">Doutorando em Engenharia Nuclear</p>
+                        <p class="mt-2 text-gray-300 text-sm">Desenvolve modelos para análise de custos e viabilidade de projetos de descomissionamento.</p>
+                        <div class="flex space-x-4 mt-4">
+                            <a href="#" target="_blank" aria-label="LinkedIn"><img src="figs/linkedin.svg" alt="LinkedIn" class="social-icon"></a>
+                            <a href="#" target="_blank" aria-label="E-mail"><img src="figs/email.svg" alt="E-mail" class="social-icon"></a>
+                        </div>
+                    </div>
+                    <!-- ======================= -->
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-3xl font-semibold mb-8 text-center">Membros do Passado</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 opacity-70">
+                    <!-- ======================= -->
+                    <div class="flex flex-col items-center text-center p-6 bg-gray-800 rounded-lg shadow-lg">
+                        <img src="https://via.placeholder.com/150" alt="Foto do Membro Antigo" class="w-32 h-32 rounded-full mb-4 object-cover grayscale">
+                        <h4 class="text-xl font-bold">Nome do Ex-Membro</h4>
+                        <p class="text-gray-400">Título/Período</p>
+                        <p class="mt-2 text-gray-300 text-sm">Contribuiu para o projeto de segurança passiva em reatores de pequena escala.</p>
+                        <div class="flex space-x-4 mt-4">
+                            <a href="#" target="_blank" aria-label="LinkedIn"><img src="figs/linkedin.svg" alt="LinkedIn" class="social-icon"></a>
+                        </div>
+                    </div>
+                    <!-- ======================= -->
+                    <div class="flex flex-col items-center text-center p-6 bg-gray-800 rounded-lg shadow-lg">
+                        <img src="https://via.placeholder.com/150" alt="Foto do Membro Antigo" class="w-32 h-32 rounded-full mb-4 object-cover grayscale">
+                        <h4 class="text-xl font-bold">Nome do Ex-Membro</h4>
+                        <p class="text-gray-400">Título/Período</p>
+                        <p class="mt-2 text-gray-300 text-sm">Contribuiu para o projeto de segurança passiva em reatores de pequena escala.</p>
+                        <div class="flex space-x-4 mt-4">
+                            <a href="#" target="_blank" aria-label="LinkedIn"><img src="figs/linkedin.svg" alt="LinkedIn" class="social-icon"></a>
+                        </div>
+                    </div>
+                    <!-- ======================= -->
+                    </div>
+            </div>
+        </section>
+
+        <section id="apoios" class="py-16 px-4 bg-gray-700 text-white rounded-lg my-10" data-jumpto-title="Apoios">
+            <h2 class="text-4xl font-bold mb-12 text-center">Apoios e Apoiados</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 justify-items-center">
+                <div class="w-40 h-24 flex items-center justify-center p-4 bg-white rounded-lg shadow-md">
+                    <img src="https://via.placeholder.com/150x75" alt="Logo de Apoio 1" class="max-w-full max-h-full object-contain">
+                </div>
+                <div class="w-40 h-24 flex items-center justify-center p-4 bg-white rounded-lg shadow-md">
+                    <img src="https://via.placeholder.com/150x75" alt="Logo de Apoio 2" class="max-w-full max-h-full object-contain">
+                </div>
+                </div>
+        </section>
+
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <div id="fab-container" class="fixed bottom-6 right-6 z-40 flex flex-col-reverse items-center space-y-reverse space-y-3">
+        <button id="fab-chat" aria-label="Configurações de Cookies"
+            class="fab-button w-14 h-14 bg-gray-700 rounded-full shadow-lg flex items-center 
+            justify-center text-white hover:bg-gray-800 transition-colors duration-200">
+            <img src="figs/globe.svg" alt="Descrição da imagem SVG" >        
+        </button>
+
+        </div>
+
+    <div id="side-menu-overlay" class="fixed inset-0 bg-black/50 z-40 hidden-element transition-opacity duration-300"></div>
+    <aside id="side-menu-panel"
+        class="fixed top-0 right-0 h-full w-full max-w-sm bg-gray-900 shadow-xl z-50 
+               transform translate-x-full transition-transform duration-300 ease-in-out 
+               p-6 overflow-y-auto">
+        <div class="flex justify-between items-center mb-6">
+            <h2 id="side-menu-title" class="text-xl font-semibold text-white">Menu</h2>
+            <button id="close-side-menu" aria-label="Fechar Menu" class="text-gray-400 hover:text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                    stroke="currentColor" class="w-7 h-7">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+
+        <div id="side-menu-content" class="space-y-4">
+            <p class="text-gray-300">Conteúdo do menu aparecerá aqui.</p>
+        </div>
+    </aside>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
